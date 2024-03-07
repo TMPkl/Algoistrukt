@@ -1,6 +1,6 @@
 import random
 import itertools
-def genV(n):
+def genV():
 
     n = int(input())
     L = [random.randrange(0,n*10,2) for _ in range(n//2)]
@@ -17,3 +17,4 @@ def genV(n):
     f.write(str_from_tab)
     f.close()
     return list(itertools.chain(L,R))
+print(genV())
