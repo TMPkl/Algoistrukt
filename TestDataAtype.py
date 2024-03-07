@@ -2,9 +2,8 @@ import random
 import itertools
 
 n = int(input())
-
 L = [random.randrange(0,n*10,2) for _ in range(n//2)]
-R = [random.randrange(1,n*10,2) for _ in range(n-len(L)+1)]
+R = [random.randrange(1,n*10,2) for _ in range(n-len(L))]
 5
 L.sort()
 R.sort(reverse=True)
