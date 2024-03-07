@@ -1,6 +1,6 @@
 import random
 import itertools
-def genA(n):
+def genA():
 
     n = int(input())
 
@@ -17,4 +17,5 @@ def genA(n):
     f=open("test_data_V.txt","w")
     f.write(str_from_tab)
     f.close()
-    return list(itertools.chain(R,L))
+    return list(itertools.chain(L,R))
+print(genA())
