@@ -1,6 +1,6 @@
 import random
 import itertools
-def genA():
+def genV():
 
     n = int(input())
 
@@ -11,11 +11,11 @@ def genA():
     R.sort(reverse=True)
 
 
-    str_from_tab = str(list(itertools.chain(R,L)))[1:-1].replace(",","").replace(" ","\n")
+    str_from_tab = str(list(itertools.chain(R,L)))#[1:-1].replace(",","").replace(" ","\n")
 
 
     f=open("test_data_V.txt","w")
     f.write(str_from_tab)
     f.close()
     return list(itertools.chain(L,R))
-print(genA())
+print(genV())

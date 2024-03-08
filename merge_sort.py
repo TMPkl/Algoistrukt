@@ -1,3 +1,5 @@
+import timeit
+import subprocess
 def mergeSort(lst):
     counter = 0
     if len(lst) > 1:
@@ -34,11 +36,14 @@ def mergeSort(lst):
             
     return lst
 
-A = [2,
-6,
-46,
-35,
-8,
-3,]
 
-print(mergeSort(A))
+f = open("test_data_A.txt","r")
+
+A = f.read().split(" ")
+f.close()
+A = [int(x) for x in A]
+t0 =timeit.default_timer()
+mergeSort(A)
+t1 = timeit.default_timer()
+print(t1-t0)
+subprocess.run(["python", "TestDataAtype.py"])
