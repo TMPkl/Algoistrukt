@@ -2,7 +2,7 @@ import random
 import itertools
 def genV():
 
-    n = int(input())
+    n= 10000 #int(input())
 
     L = [random.randrange(0,n*10,2) for _ in range(n//2)]
     R = [random.randrange(1,n*10,2) for _ in range(n-len(L))]
