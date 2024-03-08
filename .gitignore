@@ -1,3 +1,4 @@
 *.txt
 test.py
 test2.py
+!notes.txt

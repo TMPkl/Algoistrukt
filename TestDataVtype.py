@@ -1,8 +1,9 @@
 import random
 import itertools
-def genV():
+import sys
+def genV(n):
 
-    n= 10000 #int(input())
+    #n= 10000 #int(input())
 
     L = [random.randrange(0,n*10,2) for _ in range(n//2)]
     R = [random.randrange(1,n*10,2) for _ in range(n-len(L))]
@@ -18,4 +19,7 @@ def genV():
     f.write(str_from_tab)
     f.close()
     return list(itertools.chain(L,R))
-print(genV())
+if len(sys.argv) == 2:
+    genV(int(sys.argv[1]))
+else:
+    genV(int(input("podaj ilość danych testowych: ")))
