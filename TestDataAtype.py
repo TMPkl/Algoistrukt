@@ -10,7 +10,7 @@ def genA():
     R.sort(reverse=True)
 
 
-    str_from_tab = str(list(itertools.chain(L,R)))#[1:-1].replace(",","").replace(" ","\n")
+    str_from_tab = str(list(itertools.chain(L,R)))[1:-1]#.replace(",","").replace(" ","\n")
 
 
     f=open("test_data_A.txt","w")

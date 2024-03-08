@@ -39,11 +39,13 @@ def mergeSort(lst):
 
 f = open("test_data_A.txt","r")
 
-A = f.read().split(" ")
+A = f.read().replace(",","").split(" ")
 f.close()
 A = [int(x) for x in A]
 t0 =timeit.default_timer()
 mergeSort(A)
 t1 = timeit.default_timer()
+results_m = open("merge_sort_results.txt", "a")
+results_m.write(str(t1-t0)+"\n")
 print(t1-t0)
 subprocess.run(["python", "TestDataAtype.py"])
