@@ -25,8 +25,8 @@ def quicksort_iteracyjnie(lst):
     return lst
 
 if len(sys.argv) == 2:
-    subprocess.run(["python", "TestDataAtype.py", sys.argv[1]])              ############## zmiana algo generującego
-    f = open("test_data_A.txt","r")                                        ############# zmiana pliku gdzie czytać dane
+    subprocess.run(["python", "TestDataVtype.py", sys.argv[1]])              ############## zmiana algo generującego
+    f = open("test_data_V.txt","r")                                        ############# zmiana pliku gdzie czytać dane
     A = f.read().replace(",","").split(" ")
     f.close()
     A = [int(x) for x in A]
