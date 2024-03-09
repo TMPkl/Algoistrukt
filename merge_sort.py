@@ -37,8 +37,8 @@ def mergeSort(lst):
             
     return lst
 
-subprocess.run(["python", "TestDataVtype.py", sys.argv[1]])
-f = open("test_data_V.txt","r")
+subprocess.run(["python", "incTestData.py", sys.argv[1]])              ############## zmiana algo generującego
+f = open("test_data_I.txt","r")                                        ############# zmiana pliku gdzie czytać dane
 
 A = f.read().replace(",","").split(" ")
 f.close()
@@ -46,6 +46,6 @@ A = [int(x) for x in A]
 t0 =timeit.default_timer()
 mergeSort(A)
 t1 = timeit.default_timer()
-results_m = open("merge_sort_results.txt", "a")
+results_m = open("merge_sort_results.txt", "a")   
 results_m.write(str(t1-t0)+"\n")
 results_m.close()

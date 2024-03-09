@@ -3,4 +3,4 @@ merge_sort DONE
 shell_sort ____
 qsort      ____
 platforma do testowania POŁOWA
-generator wykresów      ______
+generator wykresów       
