@@ -2,5 +2,5 @@ generatory DONE
 merge_sort DONE
 shell_sort ____
 qsort      ____
-platforma do testowania POŁOWA
-generator wykresów       
+platforma do testowania DONE
+generator wykresów  DONE      

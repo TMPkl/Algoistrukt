@@ -1,10 +1,10 @@
 import random
+import sys
 import itertools
-def genA():
+def genA(n):
 
-    n= 10000 #int(input())
-    L = [random.randrange(0,n*10,2) for _ in range(n//2)]
-    R = [random.randrange(1,n*10,2) for _ in range(n-len(L))]
+    L = [random.randrange(0,n*10) for _ in range(n//2)]
+    R = [random.randrange(1,n*10) for _ in range(n-len(L))]
     
     L.sort()
     R.sort(reverse=True)
@@ -17,4 +17,7 @@ def genA():
     f.write(str_from_tab)
     f.close()
     return list(itertools.chain(L,R))
-genA()
+if len(sys.argv) == 2:
+    genA(int(sys.argv[1]))
+else:
+    genA(int(input("podaj ilość danych testowych: ")))

@@ -25,15 +25,15 @@ def quicksort_iteracyjnie(lst):
     return lst
 
 if len(sys.argv) == 2:
-    subprocess.run(["python", "incTestData.py", sys.argv[1]])              ############## zmiana algo generującego
-    f = open("test_data_I.txt","r")                                        ############# zmiana pliku gdzie czytać dane
+    subprocess.run(["python", "TestDataAtype.py", sys.argv[1]])              ############## zmiana algo generującego
+    f = open("test_data_A.txt","r")                                        ############# zmiana pliku gdzie czytać dane
     A = f.read().replace(",","").split(" ")
     f.close()
     A = [int(x) for x in A]
     t0 =timeit.default_timer()
     quicksort_iteracyjnie(A)
     t1 = timeit.default_timer()
-    results_m = open("merge_sort_results.txt", "a")   
+    results_m = open("quick_sort_results.txt", "a")   
     results_m.write(str(t1-t0)+"\n")
     results_m.close()
 else:
