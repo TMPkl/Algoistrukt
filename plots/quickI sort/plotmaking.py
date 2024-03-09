@@ -20,5 +20,20 @@ Vy = [x[1] for x in V]
 Ax = [x[0] for x in A]
 Ay = [x[1] for x in A]
 
-plt.plot(Rx, Ry, color='r', label='random') 
-plt.plot(Ix, Iy, color='g', label='') 
+plt.plot(Rx, Ry, color='#FF0000', linestyle='dashed', label='random',linewidth = 2,
+         marker='o', markersize=7) 
+plt.plot(Ix, Iy, color='#00FF00', linestyle='dashed',label='increasing',linewidth = 2,
+         marker='o',  markersize=7) 
+plt.plot(Dx, Dy, color='#0000FF',linestyle='dashed', label='decreasing',linewidth = 2,
+         marker='o',  markersize=7)
+plt.plot(Vx, Vy, color='#FFFF00', linestyle='dashed',label='V',linewidth = 2,
+         marker='o',  markersize=7)
+plt.plot(Ax, Ay, color='#FFA500', linestyle='dashed',label='A',linewidth = 2,
+         marker='o',  markersize=7)
+
+
+plt.xlabel('number of numbers to sort')
+plt.ylabel("avg timge required to sort  [seconds]")
+plt.title('quick sort iterative way')
+plt.legend()
+plt.show()
