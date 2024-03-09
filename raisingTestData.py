@@ -1,7 +1,8 @@
 import sys
 import random
 def genR(n):
-    D = [random.randrange(0,n*10) for _ in range(n)]
+    D = [random.randrange(0,n*10,1) for _ in range(n)]
+    D.sort()
     f=open("test_data_R.txt","w")
     f.write(str(D)[1:-1])
     f.close()

@@ -49,5 +49,3 @@ t1 = timeit.default_timer()
 results_m = open("merge_sort_results.txt", "a")
 results_m.write(str(t1-t0)+"\n")
 results_m.close()
-
-
