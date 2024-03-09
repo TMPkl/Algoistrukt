@@ -1,5 +1,6 @@
 import subprocess
 import timeit
+import sys
 def podzial(lst, first, last):
     pivot = lst[last]
     i = first - 1
