@@ -1,18 +1,41 @@
-def shellSort(array, n):
-    interval = n // 2
+import subprocess
+import timeit
+import sys
+def shellSort(a, n):
+    odstep = n // 2
 
-    while interval > 0:
-        i = interval
+    while odstep > 0:
+        i = odstep
         while i < n:
-            temp = array[i]
+            temp = a[i]
             j = i
-            while j >= interval and array[j - interval] > temp:
-                array[j] = array[j - interval]
-                j -= interval
+            while j >= odstep and a[j - odstep] > temp:
+                a[j] = a[j - odstep]
+                j -= odstep
 
-            array[j] = temp
+            a[j] = temp
             i += 1
-        interval //= 2
-    return array
+        odstep //= 2
+    return a
 
-A = [3, 2, 4, 1]
+if len(sys.argv) == 2:
+    subprocess.run(["python", "../decTestData.py", sys.argv[1]])              ############## zmiana algo generującego
+    f = open("test_data_V.txt","r")                                        ############# zmiana pliku gdzie czytać dane
+    A = f.read().replace(",","").split(" ")
+    f.close()
+    A = [int(x) for x in A]
+    t0 =timeit.default_timer()
+    shellSort(A)
+    t1 = timeit.default_timer()
+    results_m = open("quick_sort_results.txt", "a")   
+    results_m.write(str(t1-t0)+"\n")
+    results_m.close()
+else:
+    A = input("podaj ilość danych testowych: ")          ##### jakie dane wygenerować 
+    A = A.split(" ")
+    A = [int(x) for x in A]
+   
+    t0 =timeit.default_timer()
+    shellSort(A,len(A))
+    t1 = timeit.default_timer()
+    print(A,"\n","w czasie: ",t1-t0)
