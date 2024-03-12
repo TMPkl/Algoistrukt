@@ -36,16 +36,16 @@ def mergeSort(lst):
             k += 1
             
     return lst
+if __name__ == "__main__":
+    subprocess.run(["python", "decTestData.py", sys.argv[1]])              ############## zmiana algo generującego
+    f = open("test_data_D.txt","r")                                        ############# zmiana pliku gdzie czytać dane
 
-subprocess.run(["python", "incTestData.py", sys.argv[1]])              ############## zmiana algo generującego
-f = open("test_data_I.txt","r")                                        ############# zmiana pliku gdzie czytać dane
-
-A = f.read().replace(",","").split(" ")
-f.close()
-A = [int(x) for x in A]
-t0 =timeit.default_timer()
-mergeSort(A)
-t1 = timeit.default_timer()
-results_m = open("merge_sort_results.txt", "a")   
-results_m.write(str(t1-t0)+"\n")
-results_m.close()
+    A = f.read().replace(",","").split(" ")
+    f.close()
+    A = [int(x) for x in A]
+    t0 =timeit.default_timer()
+    mergeSort(A)
+    t1 = timeit.default_timer()
+    results_m = open("merge_sort_results.txt", "a")   
+    results_m.write(str(t1-t0)+"\n")
+    results_m.close()

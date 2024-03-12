@@ -23,25 +23,25 @@ def quicksort_iteracyjnie(lst):
             stos.append((first, pi - 1))
             stos.append((pi + 1, last))
     return lst
-
-if len(sys.argv) == 2:
-    subprocess.run(["python", "TestDataVtype.py", sys.argv[1]])              ############## zmiana algo generującego
-    f = open("test_data_V.txt","r")                                        ############# zmiana pliku gdzie czytać dane
-    A = f.read().replace(",","").split(" ")
-    f.close()
-    A = [int(x) for x in A]
-    t0 =timeit.default_timer()
-    quicksort_iteracyjnie(A)
-    t1 = timeit.default_timer()
-    results_m = open("quick_sort_results.txt", "a")   
-    results_m.write(str(t1-t0)+"\n")
-    results_m.close()
-else:
-    A = input("podaj ilość danych testowych: ")          ##### jakie dane wygenerować 
-    A = A.split(" ")
-    A = [int(x) for x in A]
-   
-    t0 =timeit.default_timer()
-    quicksort_iteracyjnie(A)
-    t1 = timeit.default_timer()
-    print(A,"\n","w czasie: ",t1-t0)
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        subprocess.run(["python", "TestDataVtype.py", sys.argv[1]])              ############## zmiana algo generującego
+        f = open("test_data_V.txt","r")                                        ############# zmiana pliku gdzie czytać dane
+        A = f.read().replace(",","").split(" ")
+        f.close()
+        A = [int(x) for x in A]
+        t0 =timeit.default_timer()
+        quicksort_iteracyjnie(A)
+        t1 = timeit.default_timer()
+        results_m = open("quick_sort_results.txt", "a")   
+        results_m.write(str(t1-t0)+"\n")
+        results_m.close()
+    else:
+        A = input("podaj ilość danych testowych: ")          ##### jakie dane wygenerować 
+        A = A.split(" ")
+        A = [int(x) for x in A]
+    
+        t0 =timeit.default_timer()
+        quicksort_iteracyjnie(A)
+        t1 = timeit.default_timer()
+        print(A,"\n","w czasie: ",t1-t0)
