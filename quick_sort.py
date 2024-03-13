@@ -22,8 +22,10 @@ def quicksort_iteracyjnie(lst):
             pi = podzial(lst, first, last)
             stos.append((first, pi - 1))
             stos.append((pi + 1, last))
+    print(lst)
     return lst
 if __name__ == "__main__":
+    print("adwdawdawd")
     if len(sys.argv) == 2:
         subprocess.run(["python", "TestDataVtype.py", sys.argv[1]])              ############## zmiana algo generującego
         f = open("test_data_V.txt","r")                                        ############# zmiana pliku gdzie czytać dane
@@ -33,6 +35,7 @@ if __name__ == "__main__":
         t0 =timeit.default_timer()
         quicksort_iteracyjnie(A)
         t1 = timeit.default_timer()
+        
         results_m = open("quick_sort_results.txt", "a")   
         results_m.write(str(t1-t0)+"\n")
         results_m.close()
@@ -40,8 +43,8 @@ if __name__ == "__main__":
         A = input("podaj ilość danych testowych: ")          ##### jakie dane wygenerować 
         A = A.split(" ")
         A = [int(x) for x in A]
-    
         t0 =timeit.default_timer()
         quicksort_iteracyjnie(A)
         t1 = timeit.default_timer()
+        print(A)
         print(A,"\n","w czasie: ",t1-t0)
