@@ -9,7 +9,7 @@ def genD(n):
     return D
 
 if len(sys.argv) == 2:
-    genD(int(sys.argv[1]))
+    genD(int(sys.argv[1]))32
 else:
     print(genD(int(input("podaj ilość danych testowych: "))))
     

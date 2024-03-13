@@ -8,18 +8,18 @@ x = []
 y = []
 
 for tests in range(15):
-    f = open("merge_sort_results.txt","w")
+    f = open("ss.txt","w")
     f.close()
     for _ in range(number_of_tests):
-        sbp.call(["python","merge_sort.py",str(int(number_of_numbers[tests]))])
-    f = open("merge_sort_results.txt","r")
+        sbp.call(["python","ss.py",str(int(number_of_numbers[tests]))])
+    f = open("ss.txt","r")
     data = [float(x.rstrip("\n")) for x in f.readlines()]
     f.close()
     d = np.array(data)
     y.append(np.average(d[1:-1]))
     x.append(number_of_numbers[tests])
 f = open("zapisXiYdlajednegocalegowykresu.txt","a")
-f.write(str(list(zip(x,y)))+" I"+"\n")          #########################################
+f.write(str(list(zip(x,y)))+" D"+"\n")          #########################################
 f.close()
 plt.plot(x, y, color='green', linestyle='dashed', linewidth = 2,
          marker='o', markerfacecolor='blue', markersize=7)

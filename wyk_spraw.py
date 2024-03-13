@@ -51,7 +51,7 @@ def genI(n):
 
 
 number_of_tests = 10   #ilośc testów na podstawie jakiej wykonuje obliczenia
-number_of_numbers = np.linspace(1,1000,15)  #liczba liczb do posortowania--- N
+number_of_numbers = np.linspace(100,1000,15)  #liczba liczb do posortowania--- N
 xs = []
 ys = []
 
@@ -61,37 +61,71 @@ yq = []
 xm = []
 ym = []
 
-for rown in range(15):
-    test_data = genA(int(number_of_numbers[rown]))
+for generator in [genA,genD,genI,genR,genV]:
+    t0 = []
+    t1 = []
+    xm = []
+    xq = []
+    xs = []
+    ym = []
+    ys = []
+    yq = []
+    eq = []
+    em = []
+    es = []
+    print("początek generatora: "+str(generator).split()[1])
+    for rown in range(15):
+        srecord=[]
+        qrecord = []
+        mrecord = []
+        for test in range(15):
+            test_data = generator(int(number_of_numbers[rown]))
 
-    t0 =timeit.default_timer()
-    shellSort(test_data,len(test_data))
-    t1 = timeit.default_timer()
-    ys.append(t1-t0)
+            t0 =timeit.default_timer()
+            shellSort(test_data,len(test_data))
+            t1 = timeit.default_timer()
+            srecord.append(t1-t0)
 
-    t0 =timeit.default_timer()
-    quicksort_iteracyjnie(test_data)
-    t1 = timeit.default_timer()
-    yq.append(t1-t0)
+            t0 =timeit.default_timer()
+            quicksort_iteracyjnie(test_data)
+            t1 = timeit.default_timer()
+            qrecord.append(t1-t0)
 
-    t0 =timeit.default_timer()
-    mergeSort(test_data)
-    t1 = timeit.default_timer()
-    ym.append(t1-t0)
+            t0 =timeit.default_timer()
+            mergeSort(test_data)
+            t1 = timeit.default_timer()
+            mrecord.append(t1-t0)
 
-    xs.append(number_of_numbers[rown])
-    xq.append(number_of_numbers[rown])
-    xm.append(number_of_numbers[rown])
+        srecord = np.array(srecord)
+        qrecord = np.array(qrecord)
+        mrecord = np.array(mrecord)
 
-plt.plot(xs, ys, color='#FF0000', linestyle='dashed', label='shell sort',linewidth = 2,
-         marker='o', markersize=7) 
-plt.plot(xq, yq, color='#00FF00', linestyle='dashed',label='quick sort',linewidth = 2,
-         marker='o',  markersize=7) 
-plt.plot(xm, ym, color='#0000FF',linestyle='dashed', label='merge',linewidth = 2,
-         marker='o',  markersize=7)
 
-plt.xlabel('number of numbers to sort')
-plt.ylabel("avg timge required to sort  [seconds]")
-plt.title('shell sort')
-plt.legend()
-plt.show()
+        yq.append(float(np.average(qrecord)))
+        eq.append(float(np.std(qrecord)))
+
+        ys.append(float(np.average(srecord)))
+        es.append(float(np.std(srecord)))
+
+        ym.append(float(np.average(mrecord)))
+        em.append(float(np.std(mrecord)))
+
+        xs.append(number_of_numbers[rown])
+        xq.append(number_of_numbers[rown])
+        xm.append(number_of_numbers[rown])
+
+    #plt.errorbar(x, y, e, linestyle='None', marker='^')
+    plt.errorbar(xs, ys,es ,color='#FF0000',label='shell sort',
+            marker='^',) 
+    plt.errorbar(xq, yq,eq, color='#00FF00',label='quick sort',
+            marker='^',) 
+    plt.errorbar(xm, ym,em, color='#0000FF',label='merge',
+            marker='^')
+
+    plt.xlabel('number of numbers to sort')
+    plt.yscale("log")
+    plt.ylabel("avg timge required to sort  [seconds]")
+    plt.title(str(generator).split()[1])
+    plt.legend()
+    plt.savefig("plots/gen/"+str(generator).split()[1]+".png")
+    plt.cla()
