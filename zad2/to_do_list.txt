@@ -1,0 +1,3 @@
+(d) równoważenie drzewa przez rotacje (algorytm DSW) lub przez usuwanie
+korzenia (należy wybrać jedną metodę); elementy drzewa należy wypisać w
+porządku pre-oder przed i po zrównoważeniu drzewa.
