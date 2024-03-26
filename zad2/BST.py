@@ -73,7 +73,6 @@ def right_full_rotated(root):
         new_root = insert(new_root,d)
     return new_root
 
-
 A = [20,15,30,25,40,23,28]
 
 root = None
