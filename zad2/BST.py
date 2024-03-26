@@ -73,36 +73,6 @@ def right_full_rotated(root):
         new_root = insert(new_root,d)
     return new_root
 
-################
-def compress_to_balanced_tree(root, size):
-    if root is None:
-        return None
-
-    num_leaves = size + 1 - 2**((size+1).bit_length()-1)
-    for _ in range(num_leaves):
-        grandparent = root
-        parent = root.right
-        while parent.right is not None:
-            grandparent = parent
-            parent = parent.right
-        grandparent.right = parent.left
-        parent.left = grandparent
-        root = parent
-    while size > 1:
-        size >>= 1
-        grandparent = root
-        parent = root.right
-        for _ in range(size):
-            child = parent.right
-            grandparent.right = child
-            parent.right = child.left
-            child.left = parent
-            grandparent = child
-            parent = grandparent.right
-        root = grandparent
-    return root
-################
-
 
 A = [20,15,30,25,40,23,28]
 
@@ -110,14 +80,6 @@ root = None
 for a in A:
     root = insert(root, a)
 
-print_tree_preorder(root)
-print()
-root = right_full_rotated(root)
-print("I stage DSW ")
-print_tree_preorder(root)
-print()
-print("II stage DSW ")
-root = compress_to_balanced_tree(root,len(A))
 # print("print_tree_preorder","##################################################")
 # print_tree_preorder(root)
 # print("find_smallest","##################################################")
