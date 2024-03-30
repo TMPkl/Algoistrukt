@@ -1,119 +1,162 @@
 import math
 
-class BST:
-    def __init__(self, value):
-        self.key = value
-        self.left = None
-        self.right = None
-
-def height(node):
-    if node is None:
-        return 0
-    return 1 + max(height(node.left), height(node.right))
-
-def is_balanced(root):
-    if root is None:
-        return True
+class BST_Node:
+    val = None
+    left = None
+    right = None
+    parent = None
     
-    left_height = height(root.left)
-    right_height = height(root.right)
-    
-    if abs(left_height - right_height) <= 1 and is_balanced(root.left) and is_balanced(root.right):
-        return True
-    
-    return False
+    def __init__(self, val = None):
+        self.val = val
 
-def insert(node, key):
-    if node is None:
-        return BST(key)
-    if key < node.key:
-        node.left = insert(node.left, key)
+
+    def insert(self, val):
+        if self.val is None:
+            self.val = val 
+            return 
+        
+        if val < self.val:
+            if self.left:
+                self.left.insert(val)
+                return
+            self.left = BST_Node(val)
+            self.left.parent = self
+        else:
+            if self.right:
+                self.right.insert(val)
+                return 
+            self.right = BST_Node(val)
+            self.right.parent = self
+
+
+    def print_preorder(self):
+        if self.val is not None:
+            print(self.val)
+        if self.left is not None:
+            self.left.print_preorder()
+        if self.right is not None:
+            self.right.print_preorder()
+
+
+def right_rotate(node):
+    parent = node.parent
+    left = node.left
+    left_right = left.right 
+
+    if parent: # update parents if node is a child
+        if parent.left == node:
+            parent.left = left
+        else:
+            parent.right = left
     else:
-        node.right = insert(node.right, key)
-    return node
+        left.parent = None
+        node.parent = left
 
+    left.parent = parent
+
+    left.right = node
+    node.parent = left
+
+    node.left = left_right
+    if left_right:
+        left_right.parent = node
+
+
+def left_rotate(node):
+    parent = node.parent
+    right = node.right
+    right_left = right.left
+
+    if parent: # update parents if node is a child
+        if parent.right == node:
+            parent.right = right
+        else:
+            parent.left = right
+    else:
+        right.parent = None
+        node.parent = right
+
+    right.parent = parent
+
+    right.left = node
+    node.parent = right
+
+    node.right = right_left
+    if right_left:
+        right_left.parent = node
+
+
+def bst_to_vine(root):
+    count = 0
+
+    rotator =  root
+
+    while rotator:
+        if rotator.left:
+            right_rotate(rotator)
+            rotator = rotator.parent
+        else:
+            count += 1
+            rotator = rotator.right 
+    
+    return count
+
+
+def calculate_height(tree):
+    if tree is not None:
+        return nheight(tree, 0)
+    else:
+        return 0
+    
+def nheight(tree, h):
+    if tree is None:
+        return h 
+    
+    left_height = nheight(tree.left, h+1)
+    right_height = nheight(tree.right, h+1)
+
+    return max(left_height, right_height)
+
+def to_root(tree_node: BST_Node):
+    node = tree_node
+
+    while node.parent:
+        node = node.parent
+
+    return node 
+
+
+def compress(node: BST_Node, count: int):
+    for i in range(count):
+        left_rotate(node)
+        node = node.parent.right
+
+def dsw(root: BST_Node):
+    size = bst_to_vine(root)
+    
+    h = math.floor((math.log2(size + 1)))
+    m = int(math.pow(2, h)) - 1
+
+    compress(to_root(root), size - m)
+
+    while m > 1:
+        m //= 2
+        compress(to_root(root), m)
 def print_tree_preorder(node):
     if node is None:
         return
-    print(node.key,end=" -> ")
+    print(node.val,end=" -> ")
     print_tree_preorder(node.left)
     print_tree_preorder(node.right)
 
-def right_full_rotation(node, parent=None):
-    while node is not None:
-        if node.left is None:
-            if node.right is not None:
-                right_full_rotation(node.right, node)
-            break
-        else:
-            new_root = node.left
-            node.left = new_root.right
-            new_root.right = node
-            if parent:
-                if parent.left == node:
-                    parent.left = new_root
-                else:
-                    parent.right = new_root
-            node = new_root
-    if parent is None:
-        return node 
-    else:
-        return None
+if __name__ == '__main__':
+
+    A = [7,2,1,6,4,3,5,12,8,13,10,9,11]
+    root = BST_Node()
+    for a in A:
+        root.insert(a)
 
 
-def left_rotate(node, parent):
-    if node is None or node.right is None:
-        return node
+    dsw(to_root(root))
+    print_tree_preorder(to_root(root))
 
-    new_root = node.right
-    node.right = new_root.left
-    new_root.left = node
-    
-    if parent:
-        if parent.left == node:
-            parent.left = new_root
-        else:
-            parent.right = new_root
-    
-    return new_root
-
-def count_nodes(node):
-    if node is None:
-        return 0
-    return 1 + count_nodes(node.left) + count_nodes(node.right)
-
-def balance_tree(node):
-    n = count_nodes(node)
-    m = 2 ** (int(math.log2(n + 1))) - 1
-    node = perform_rotations(node, n - m)
-    node = perform_rotations(node, m)
-    return node
-
-def perform_rotations(node, m):
-    while m > 1:
-        m = m // 2
-        current = node
-        parent = None
-        for _ in range(m):
-            if current is None: 
-                break
-            parent = current
-            current = left_rotate(current, parent) if _ % 2 == 0 else right_full_rotation(current, parent)
-            current = current.right if _ % 2 == 0 else current.left
-        node = current
-    return node
-
-
-A = [6,3,1,5,4,2]
-
-root = None
-for a in A:
-    root = insert(root, a)
-
-print_tree_preorder(root)
-print()
-root = right_full_rotation(root)
-print_tree_preorder(root)
-root = balance_tree(root)
-print()
-print_tree_preorder(root)

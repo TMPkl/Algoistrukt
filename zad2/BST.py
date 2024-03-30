@@ -34,9 +34,6 @@ def find_largest(node):
         print(node.key, end="-->")
         return find_largest(node.right)
 
-
-
-
 def print_tree_preorder(node):
     if node is None:
         return
@@ -55,10 +52,10 @@ def inorder_traversal(root):
 def print_tree_sorted(node):
     if node is None or node.key is None:
         return
-    print_tree_sorted(node.left)
+    print_tree_sorted(node.right)
     if node.key is not None: 
         print(node.key)
-    print_tree_sorted(node.right)
+    print_tree_sorted(node.left)
 
 def print_pre_subtree(node,key):
     if node is None:
@@ -75,7 +72,7 @@ def right_full_rotated(root):
         new_root = insert(new_root,d)
     return new_root
 
-A = [20,5,3,6,21,23]
+A = [7,2,1,6,4,3,5,12,8,13,10,9,11]
 
 root = None
 for a in A:
@@ -91,4 +88,4 @@ find_largest(root)
 print("print_tree_sorted","##################################################")
 print_tree_sorted(root)
 print("print_subtree_preordered(root,key)","##################################################")    
-print_pre_subtree(root,21)
+print_pre_subtree(root,6)
