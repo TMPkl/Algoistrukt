@@ -67,7 +67,7 @@ def left_rotate(node: BST_Node):
     right = node.right
     right_left = right.left
 
-    if parent: # update parents if node is a child
+    if parent:
         if parent.right == node:
             parent.right = right
         else:
@@ -104,16 +104,16 @@ def bst_to_vine(root: BST_Node):
 
 def calculate_height(tree):
     if tree is not None:
-        return _height(tree, 0)
+        return nheight(tree, 0)
     else:
         return 0
     
-def _height(tree, h):
+def nheight(tree, h):
     if tree is None:
         return h 
     
-    left_height = _height(tree.left, h+1)
-    right_height = _height(tree.right, h+1)
+    left_height = nheight(tree.left, h+1)
+    right_height = nheight(tree.right, h+1)
 
     return max(left_height, right_height)
 
@@ -198,8 +198,7 @@ def dsw(root: BST_Node):
 
 
 if __name__ == '__main__':
-    data = input('Podaj liczby oddzielone spacją: ').split()
-    data = [int(e) for e in data]
+    data = [10,9,8,7,6,5,4,3,2,1]
 
     root = BST_Node()
 

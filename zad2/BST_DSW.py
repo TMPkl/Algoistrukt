@@ -28,22 +28,12 @@ class BST_Node:
             self.right = BST_Node(val)
             self.right.parent = self
 
-
-    def print_preorder(self):
-        if self.val is not None:
-            print(self.val)
-        if self.left is not None:
-            self.left.print_preorder()
-        if self.right is not None:
-            self.right.print_preorder()
-
-
 def right_rotate(node):
     parent = node.parent
     left = node.left
     left_right = left.right 
 
-    if parent: # update parents if node is a child
+    if parent: 
         if parent.left == node:
             parent.left = left
         else:
@@ -67,7 +57,7 @@ def left_rotate(node):
     right = node.right
     right_left = right.left
 
-    if parent: # update parents if node is a child
+    if parent:
         if parent.right == node:
             parent.right = right
         else:
@@ -88,9 +78,7 @@ def left_rotate(node):
 
 def bst_to_vine(root):
     count = 0
-
     rotator =  root
-
     while rotator:
         if rotator.left:
             right_rotate(rotator)
@@ -155,7 +143,6 @@ if __name__ == '__main__':
     root = BST_Node()
     for a in A:
         root.insert(a)
-
 
     dsw(to_root(root))
     print_tree_preorder(to_root(root))
