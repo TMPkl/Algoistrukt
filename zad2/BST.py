@@ -1,3 +1,15 @@
+import random
+import timeit
+import sys
+sys.setrecursionlimit(10**6)
+def genD(n):
+    D = [random.randrange(0,n*10,1) for _ in range(n)]
+    D.sort(reverse=True)
+    f=open("test_data_D.txt","w")
+    f.write(str(D)[1:-1])
+    f.close()
+    return D
+
 class BST:
     def __init__(self, key, left=None, right = None):
         self.key = key
@@ -20,10 +32,10 @@ def insert(node, key):
 
 def find_smallest(node):
     if node.left is None:
-        print(node.key)
+        #print(node.key)
         return node.key
     else:
-        print(node.key, end="-->")
+        #print(node.key, end="-->")
         return find_smallest(node.left)
 
 def find_largest(node):
@@ -72,20 +84,30 @@ def right_full_rotated(root):
         new_root = insert(new_root,d)
     return new_root
 
-A = [7,2,1,6,4,3,5,12,8,13,10,9,11]
 
-root = None
-for a in A:
-    root = insert(root, a)
+for n in range(1000,10001,1000):
+    print(str(n),end = ";")
+    for _ in range(10):
+        A = genD(n)
 
-print("print_tree_preorder","##################################################")
-print_tree_preorder(root)
-print()
-print("find_smallest","##################################################")
-find_smallest(root)
-print("find_largest","##################################################")
-find_largest(root)
-print("print_tree_sorted","##################################################")
-print_tree_sorted(root)
-print("print_subtree_preordered(root,key)","##################################################")    
-print_pre_subtree(root,6)
+        root = None
+        
+        for a in A:
+            root = insert(root, a)
+        t0 = timeit.default_timer()
+        find_smallest(root)
+        t1 = timeit.default_timer()
+        t = t1-t0
+        print(round(t,6),end=";")
+    print()
+        # print("print_tree_preorder","##################################################")
+        # print_tree_preorder(root)
+        # print()
+        # print("find_smallest","##################################################")
+        # find_smallest(root)
+        # print("find_largest","##################################################")
+        # find_largest(root)
+        # print("print_tree_sorted","##################################################")
+        # print_tree_sorted(root)
+        # print("print_subtree_preordered(root,key)","##################################################")    
+        # print_pre_subtree(root,6)
