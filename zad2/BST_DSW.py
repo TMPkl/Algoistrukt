@@ -1,5 +1,8 @@
 import math
-
+import random
+import timeit
+import sys
+import sys
 class BST_Node:
     val = None
     left = None
@@ -137,13 +140,24 @@ def print_tree_preorder(node):
     print_tree_preorder(node.left)
     print_tree_preorder(node.right)
 
+def genD(n):
+    D = [random.randrange(0,n*10,1) for _ in range(n)]
+    D.sort(reverse=True)
+    f=open("test_data_D.txt","w")
+    f.write(str(D)[1:-1])
+    f.close()
+    return D
+
 if __name__ == '__main__':
+    sys.setrecursionlimit(10**6)
+    for n in range(10,10001,1000):
+        D = genD(n)
+        root = BST_Node()
+        for d in D:
+            root.insert(d)
+        start = timeit.default_timer()
+        dsw(to_root(root))
+        stop = timeit.default_timer()
+        print(f'N = {n}, Time = {stop - start}')
 
-    A = [7,2,1,6,4,3,5,12,8,13,10,9,11]
-    root = BST_Node()
-    for a in A:
-        root.insert(a)
-
-    dsw(to_root(root))
-    print_tree_preorder(to_root(root))
-
+        
