@@ -1,0 +1,13 @@
+w ramach projektu 3 na Algorytmy i Struktury Danych proszę zaimplementowac
+algorytm Kahna na 2 strukturach danych (macierz sąsiedztwa, lista
+następników).
+
+pozdrawiam
+MS
+
+Program powinien mieć możliwość wczytywania danych 
+z klawiatury oraz z pliku tekstowego zawierającego graf 
+zapisany w postaci listy krawędzi, gdzie para liczb w pierwszej 
+linii to informacja o liczbie wieczchołków i liczbie krawędzi, a pary w
+ kolejnych liniach to pary wierzchołków połączonych łukiem. 
+Spacja jest separatorem liczb w pojedynczej linii.
