@@ -150,14 +150,28 @@ def genD(n):
 
 if __name__ == '__main__':
     sys.setrecursionlimit(10**6)
-    for n in range(10,10001,1000):
-        D = genD(n)
-        root = BST_Node()
-        for d in D:
-            root.insert(d)
-        start = timeit.default_timer()
-        dsw(to_root(root))
-        stop = timeit.default_timer()
-        print(f'N = {n}, Time = {stop - start}')
+    # for n in range(10,10001,1000):
+    #     D = genD(n)
+    #     root = BST_Node()
+    #     for d in D:
+    #         root.insert(d)
+    #     start = timeit.default_timer()
+    #     dsw(to_root(root))
+    #     stop = timeit.default_timer()
+    #     print(f'N = {n}, Time = {stop - start}')
+    for n in range(1000,10001,1000):
+        print(str(n),end = ";")
+        for _ in range(10):
+            A = genD(n)
 
+            root = BST_Node()
+            
+            for a in A:
+                root.insert(a)
+            t0 = timeit.default_timer()
+            dsw(to_root(root))
+            t1 = timeit.default_timer()
+            t = t1-t0
+            print(round(t,6),end=";")
+        print()
         

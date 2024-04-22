@@ -207,4 +207,3 @@ if __name__ == '__main__':
 
     dsw(to_root(root))
     print_tree(to_root(root))
-
