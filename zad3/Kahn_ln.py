@@ -55,3 +55,5 @@ if __name__ == "__main__":
                 break
         if not flag:
             break
+    if ln != []:
+        print("graf cykliczny -> niemożliwe jest wykonania sortowania")
