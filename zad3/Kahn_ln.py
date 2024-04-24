@@ -19,13 +19,18 @@ def delete_v(v, listOfI):
 if __name__ == "__main__":
     choice = input("Read from file press 'F', read from console press 'C': ")
     if choice == "F":
-        with open("zad3/input.txt", "r") as file:
+        with open("zad3/inputIN.txt", "r") as file:
             firstLine = file.readline().split()
             nv = int(firstLine[0])
             ne = int(firstLine[1])
             ln = [[] for _ in range(nv)]
             for _ in range(ne):
                 line = file.readline().split()
+                if line[0] == line[1]:
+                    os.system('cls')
+                    print("graf cykliczny -> niemożliwe jest wykonania sortowania")
+                    os.system('pause')
+                    break
                 ln[int(line[0])].append(int(line[1]))
             print(ln)
             
@@ -36,6 +41,10 @@ if __name__ == "__main__":
         ln = [[] for _ in range(nv)]
         for _ in range(ne):
             line = input().split()
+            if line[0] == line[1]:
+                    os.system('cls')
+                    print("graf cykliczny -> niemożliwe jest wykonania sortowania")
+                    os.system('pause')
             ln[int(line[0])].append(int(line[1]))
         os.system('cls')
         
