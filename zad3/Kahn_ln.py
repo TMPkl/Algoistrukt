@@ -3,8 +3,6 @@ import os
 
 def in_degree(v, listOfI):
     l = list(it.chain.from_iterable(listOfI))
-    if l.count(v) == 0 and listOfI[v] == []:
-        return -1
     return l.count(v) 
 
 def delete_v(v, listOfI):
@@ -44,26 +42,26 @@ if __name__ == "__main__":
             if line[0] == line[1]:
                     os.system('cls')
                     print("graf cykliczny -> niemożliwe jest wykonania sortowania")
-                    os.system('pause')
+                    os.system('pause') 
             ln[int(line[0])].append(int(line[1]))
         os.system('cls')
-        
+    listawyprintowanych = set()
     print(ln)    
     while any(ln):
         flag = False
         for v in range(nv):
-            if in_degree(v, ln) == 0:
-                if len(list(it.chain.from_iterable(ln))) == 1:
-                    print(v,ln[v][0],sep="\n")
-                    ln = []
-                    break
+            if in_degree(v, ln) == 0 and not v in listawyprintowanych:
                 print(v)
+                listawyprintowanych.add(v)
                 ln = delete_v(v, ln)
                 flag = True
                 
                 break
         if not flag:
-            break
+            print("graf cykliczny -> niemożliwe jest wykonania sortowania")
+            os.exit()
     if ln != []:
-        os.system('cls')
-        print("graf cykliczny -> niemożliwe jest wykonania sortowania")
+        for x in range(nv):
+            if x not in listawyprintowanych:
+                print(x)
+                listawyprintowanych.add(x) 
