@@ -2,15 +2,15 @@ import random
 
 def GrafGen(n):
     with open("zad3/inputIN.txt", "w") as file:
-        file.write(str(n) + " " + str(int(n*(n-1)/2*1/2)) + "\n")
+        file.write(str(n) + " " + str(n*(n-1)//4) + "\n")
         edges = set()
         nodes = list(range(n))
         
         # Generate a random directed acyclic graph
-        for _ in range(int(n*(n-1)/2*1/2)):
+        for _ in range(n*(n-1)//4):
             edge_added = False
             attempts = 0
-            while not edge_added and attempts < 100:  # Limit the number of attempts
+            while not edge_added and attempts < 10:  # Limit the number of attempts
                 a = random.choice(nodes)
                 b = random.choice(nodes)
                 if a != b and (a, b) not in edges and not forms_cycle(edges, a, b):
@@ -18,7 +18,7 @@ def GrafGen(n):
                     edges.add((a, b))
                     edge_added = True
                 attempts += 1
-            if attempts >= 100:
+            if attempts >= 10:
                 break  # If unable to add edge after 100 attempts, break
 
 def forms_cycle(edges, a, b):

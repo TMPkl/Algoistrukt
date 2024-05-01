@@ -48,11 +48,11 @@ def topological_sort():
 
 if __name__ == "__main__":
     wyniki = open("zad3/wynikiIN.txt","w")
-    for i in range(9,1010,10):
+    for i in range(9,1000,100):
         n = 0
         print("Test n:",i)
         wyniki.write("Test n: " + str(i) + "\n")
-        while n < 10:
+        while n < 5:
             GrafGen.GrafGen(i)
             try:
                 t0 =timeit.default_timer()
