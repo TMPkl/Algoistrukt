@@ -15,7 +15,7 @@ def delConnection(v,ln):
 
 if __name__ == "__main__":
     choice = input("Read from file press 'F', read from console press 'C': ")
-    if choice == "F":
+    if choice == 'F':
         with open("zad3/inputMS.txt", "r") as file:
             firstLine = file.readline().split()
             nv = int(firstLine[0])
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         ln = [[0]*nv for _ in range(nv)] 
 
         for _ in range(ne):
-            line = input().readline().split()
+            line = input().split()
             ln[int(line[0])][int(line[1])] = 1
             ln[int(line[1])][int(line[0])] = -1
         os.system('cls')
@@ -60,7 +60,6 @@ if __name__ == "__main__":
                 break
         if flag == -1:
             os.system('cls')
-            print("graf cykliczny -> niemożliwe jest wykonania sortowania")
-            break
+            raise Exception('graf nie jest acykliczny')
         if flag == 1:
             break
