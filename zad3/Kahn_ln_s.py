@@ -15,7 +15,7 @@ def delete_v(v, listOfI):
     newlistofI[v] = []
     return newlistofI
 def topological_sort():
-        with open("zad3/inputIN.txt", "r") as file:
+        with open("inputIN.txt", "r") as file:
             firstLine = file.readline().split()
             nv = int(firstLine[0])
             ne = int(firstLine[1])
@@ -28,6 +28,7 @@ def topological_sort():
                 ln[int(line[0])].append(int(line[1]))
                 
         listawyprintowanych = set()   
+        t0 =timeit.default_timer()
         while any(ln):
             flag = False
             for v in range(nv):
@@ -45,22 +46,22 @@ def topological_sort():
                 if x not in listawyprintowanych:
                     #print(x)
                     listawyprintowanych.add(x)
-
+        t1 = timeit.default_timer()
+        wyniki.write(str(t1-t0) + " ")
 if __name__ == "__main__":
-    wyniki = open("zad3/wynikiIN.txt","w")
-    for i in range(9,1000,100):
+    wyniki = open("wynikiIN.txt","w")
+    for i in range(0,1000,100):
         n = 0
         print("Test n:",i)
-        wyniki.write("Test n: " + str(i) + "\n")
+        wyniki.write("Test n: " + str(i) + " ")
         while n < 5:
             GrafGen.GrafGen(i)
             try:
-                t0 =timeit.default_timer()
+                
                 topological_sort()
-                t1 = timeit.default_timer()
                 print("Test",i+1,"passed")
-                wyniki.write(str(t1-t0) + "\n")
                 n+=1        
             except Exception as e:
                 pass
+        wyniki.write("\n")
     wyniki.close()

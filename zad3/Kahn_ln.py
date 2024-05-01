@@ -30,7 +30,6 @@ if __name__ == "__main__":
                     os.system('pause')
                     break
                 ln[int(line[0])].append(int(line[1]))
-            print(ln)
             
     else:
         firstLine = input().split()
@@ -45,8 +44,7 @@ if __name__ == "__main__":
                     os.system('pause') 
             ln[int(line[0])].append(int(line[1]))
         os.system('cls')
-    listawyprintowanych = set()
-    print(ln)    
+    listawyprintowanych = set()  
     while any(ln):
         flag = False
         for v in range(nv):
@@ -55,7 +53,7 @@ if __name__ == "__main__":
                 listawyprintowanych.add(v)
                 ln = delete_v(v, ln)
                 flag = True
-                
+                print(v)
                 break
         if not flag:
             raise Exception('graf nie jest acykliczny')
