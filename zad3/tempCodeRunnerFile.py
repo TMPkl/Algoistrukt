@@ -1,1 +1,1 @@
-int
+as GG

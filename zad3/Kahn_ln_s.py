@@ -1,7 +1,7 @@
 import timeit
 import itertools as it
 import os
-import GrafGen as GG
+import GrafGen 
 def in_degree(v, listOfI):
     l = list(it.chain.from_iterable(listOfI))
     return l.count(v) 
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         print("Test n:",i)
         wyniki.write("Test n: " + str(i) + "\n")
         while n < 10:
-            GG.GrafGen(i)
+            GrafGen.GrafGen(i)
             try:
                 t0 =timeit.default_timer()
                 topological_sort()
@@ -63,4 +63,4 @@ if __name__ == "__main__":
                 n+=1        
             except Exception as e:
                 pass
-    wymiki.close()
+    wyniki.close()
