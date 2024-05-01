@@ -58,8 +58,7 @@ if __name__ == "__main__":
                 
                 break
         if not flag:
-            print("graf cykliczny -> niemożliwe jest wykonania sortowania")
-            os.exit()
+            raise Exception('graf nie jest acykliczny')
     if ln != []:
         for x in range(nv):
             if x not in listawyprintowanych:
