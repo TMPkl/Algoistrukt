@@ -17,7 +17,7 @@ def delConnection(v,ln):
 
 def process_graph():
     with open("zad3/inputIN.txt", "r") as file:
-        print("Processing graph")
+        #print("Processing graph")
         firstLine = file.readline().split()
         nv = int(firstLine[0])
         ne = int(firstLine[1])
