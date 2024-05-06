@@ -2,12 +2,12 @@ import random
 
 def GrafGen(n):
     with open("zad3/inputIN.txt", "w") as file:
-        file.write(str(n) + " " + str(n*(n-1)//4) + "\n")
+        file.write(str(n) + " " + str(n*(n-1)//6) + "\n")
         edges = set()
         nodes = list(range(n))
         
         # Generate a random directed acyclic graph
-        for _ in range(n*(n-1)//4):
+        for _ in range(n*(n-1)//6):
             edge_added = False
             attempts = 0
             while not edge_added and attempts < 10:  # Limit the number of attempts
