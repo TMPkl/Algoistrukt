@@ -16,7 +16,7 @@ def delConnection(v,ln):
 if __name__ == "__main__":
     choice = input("Read from file press 'F', read from console press 'C': ")
     if choice == 'F':
-        with open("zad3/inputMS.txt", "r") as file:
+        with open("inputMS.txt", "r") as file:
             firstLine = file.readline().split()
             nv = int(firstLine[0])
             ne = int(firstLine[1])
@@ -44,7 +44,7 @@ if __name__ == "__main__":
         for v in range(nv):
             if is_in_deg(v,ln) == 0 and  not v in was_printed:
                 if list(it.chain.from_iterable(ln)).count(1) == 1:
-                    print(v,ln)
+                    print(v)
                     for x in range(len(ln[v])):
                         if ln[v][x] == 1:
                             print(x)
@@ -53,7 +53,7 @@ if __name__ == "__main__":
                     break                      
                 flag = 0
                 
-                print(v,ln)
+                print(v)
                 delConnection(v,ln)
                 was_printed.add(v)
                 input()

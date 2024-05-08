@@ -1,64 +1,38 @@
-import itertools as it
 import os
 
-def in_degree(v, listOfI):
-    l = list(it.chain.from_iterable(listOfI))
-    return l.count(v) 
+def deg(v,ln):
+    a = 0
+    line = ln[v]
+    for x in line:
+        if x == 1:
+            a+=1
+    return a
 
-def delete_v(v, listOfI):
-    newlistofI = []
-    for x in listOfI:
-        if x.count(v) != 0:
-            x.pop(x.index(v))
-        newlistofI.append(x)
-    newlistofI[v] = []
-    return newlistofI
 
-if __name__ == "__main__":
-    choice = input("Read from file press 'F', read from console press 'C': ")
-    if choice == "F":
-        with open("zad3/inputIN.txt", "r") as file:
-            firstLine = file.readline().split()
-            nv = int(firstLine[0])
-            ne = int(firstLine[1])
-            ln = [[] for _ in range(nv)]
-            for _ in range(ne):
-                line = file.readline().split()
-                if line[0] == line[1]:
-                    os.system('cls')
-                    print("graf cykliczny -> niemożliwe jest wykonania sortowania")
-                    os.system('pause')
-                    break
-                ln[int(line[0])].append(int(line[1]))
-            
-    else:
-        firstLine = input().split()
+choice = input("Read from file press 'F', read from console press 'C': ")
+if choice == 'F':
+    with open("zad3/inputMS.txt", "r") as file:
+        firstLine = file.readline().split()
         nv = int(firstLine[0])
         ne = int(firstLine[1])
-        ln = [[] for _ in range(nv)]
+        ln = [[0]*nv for _ in range(nv)] 
         for _ in range(ne):
-            line = input().split()
-            if line[0] == line[1]:
-                    os.system('cls')
-                    print("graf cykliczny -> niemożliwe jest wykonania sortowania")
-                    os.system('pause') 
-            ln[int(line[0])].append(int(line[1]))
-        os.system('cls')
-    listawyprintowanych = set()  
-    while any(ln):
-        flag = False
-        for v in range(nv):
-            if in_degree(v, ln) == 0 and not v in listawyprintowanych:
-                print(v)
-                listawyprintowanych.add(v)
-                ln = delete_v(v, ln)
-                flag = True
-                print(v)
-                break
-        if not flag:
-            raise Exception('graf nie jest acykliczny')
-    if ln != []:
-        for x in range(nv):
-            if x not in listawyprintowanych:
-                print(x)
-                listawyprintowanych.add(x) 
+            line = file.readline().split()
+            ln[int(line[0])][int(line[1])] = 1
+            ln[int(line[1])][int(line[0])] = 1
+
+else:
+    firstLine = input().split()
+    nv = int(firstLine[0])
+    ne = int(firstLine[1])
+    ln = [[0]*nv for _ in range(nv)] 
+
+    for _ in range(ne):
+        line = input().split()
+        ln[int(line[0])][int(line[1])] = 1
+        ln[int(line[1])][int(line[0])] = 1
+    os.system('cls')
+
+degs = []
+for v in range(nv):
+    degs.append(deg(v,ln))
