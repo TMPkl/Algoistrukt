@@ -10,9 +10,9 @@ def Hamiltonian(v):
     global Path
     O[v] = True
     visited += 1
-    Path.append(v)  # Append the current node to the path
-    if visited == nv and start in ln[v]:  # Check if we've visited all nodes and can return to start
-        print(Path[1::] + [start])  # Print the Hamiltonian cycle
+    Path.append(v)  
+    if visited == nv and start in ln[v]:  
+        print(Path[1::] + [start])  #Print 
         return True
     for i in ln[v]:
         if not O[i]:
@@ -20,7 +20,7 @@ def Hamiltonian(v):
                 return True
     O[v] = False
     visited -= 1
-    Path.pop()  # Remove the current node from the path if it doesn't lead to a solution
+    Path.pop()  
     return False
 
 def StartAlgo():
