@@ -40,5 +40,8 @@ else:
 wierz = []
 results = []
 DFS_Euler(0)
-print("Euler cycle: ")
-print(wierz)
+if len(wierz) != ne+1 :
+    print("brak")
+else:  
+    print("Euler cycle: ")
+    print(wierz)
