@@ -1,7 +1,0 @@
-Wszystkie implementacje powinny spełniać następujące wymagania:
-należy umożliwić wczytywanie danych (zbiór przedmiotów z parametrami i pojemność plecaka) z klawiatury oraz z pliku tekstowego;
-format danych w pliku: pierwszy wiersz to para liczb n b (liczba przedmiotów, pojemność plecaka),
-kolejne wiersze to pary liczb r w (rozmiar przedmiotu, wartość przedmiotu).
-Spacja jest separatorem liczb w pojedynczej linii.
-program winien być odporny na wszelkie błędy wprowadzane przez użytkownika przy podawaniu danych wejściowych;
-na potrzeby prezentacji algorytmów program powinien wyświetlać: elementy wybrane do plecaka, ich sumaryczny rozmiar oraz wartość funkcji celu.
